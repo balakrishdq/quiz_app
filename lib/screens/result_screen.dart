@@ -1,26 +1,31 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
+import 'package:quiz_app/utils/action_button.dart';
+
 import 'package:quiz_app/utils/gradient_box.dart';
 
-import '../utils/action_button.dart';
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class ResultScreen extends StatelessWidget {
+  final int score;
+  final int totalQuestions;
+  const ResultScreen({
+    Key? key,
+    required this.score,
+    required this.totalQuestions,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox.expand(
-        child: GradientBox(
+      body: GradientBox(
+        child: SizedBox.expand(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Quiz Mania',
+                'Result: $score / $totalQuestions',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
@@ -28,18 +33,16 @@ class HomeScreen extends StatelessWidget {
               ),
               Gap(40),
               ActionButton(
-                title: 'Start',
+                title: 'Try Again',
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => QuizScreen(
-                        totalTime: 10,
-                        questions: questions,
-                      ),
+                      builder: (context) =>
+                          QuizScreen(totalTime: 10, questions: questions),
                     ),
                   );
                 },
-              )
+              ),
             ],
           ),
         ),
