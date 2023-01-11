@@ -16,7 +16,12 @@ class ActionButton extends StatelessWidget {
       width: 200,
       child: ElevatedButton(
         onPressed: () => onTap(),
-        child: Text(title),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
     );
   }

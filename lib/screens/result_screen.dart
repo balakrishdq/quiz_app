@@ -1,19 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:quiz_app/utils/action_button.dart';
-
 import 'package:quiz_app/utils/gradient_box.dart';
 
 class ResultScreen extends StatelessWidget {
   final int score;
-  final int totalQuestions;
+  final int totalTime;
+  final List<Question> questions;
   const ResultScreen({
     Key? key,
     required this.score,
-    required this.totalQuestions,
+    required this.totalTime,
+    required this.questions,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class ResultScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Result: $score / $totalQuestions',
+                'Result: $score / ${questions.length}',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,
@@ -37,8 +39,10 @@ class ResultScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) =>
-                          QuizScreen(totalTime: 10, questions: questions),
+                      builder: (context) => QuizScreen(
+                        totalTime: totalTime,
+                        questions: questions,
+                      ),
                     ),
                   );
                 },

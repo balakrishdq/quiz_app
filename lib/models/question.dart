@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 class Question {
@@ -42,9 +43,17 @@ class Question {
     return Question(
       id: map['id'] as String,
       question: map['question'] as String,
-      answers: List<String>.from(map['answers'] as List<String>),
+      answers: List<String>.from(map['answers']),
       correctAnswer: map['correctAnswer'] as String,
     );
+  }
+
+  factory Question.fromQueryDocumentSnapshot(QueryDocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
+    final id = snapshot.id;
+
+    data['id'] = id;
+    return Question.fromMap(data);
   }
 
   String toJson() => json.encode(toMap());
@@ -76,60 +85,60 @@ class Question {
   }
 }
 
-List<Question> questions = [
-  Question(
-    id: '1',
-    question: 'The metal whose salts are sensitive to light is?',
-    answers: [
-      'Zinc',
-      'Silver',
-      'Copper',
-      'Aluminium',
-    ],
-    correctAnswer: 'Silver',
-  ),
-  Question(
-    id: '2',
-    question: 'Patanjali is well known for compilation of -',
-    answers: [
-      'Yoga Sutra',
-      'Panchatantra',
-      'Brahma Sutra',
-      'Ayurveda',
-    ],
-    correctAnswer: 'Yoga Sutra',
-  ),
-  Question(
-    id: '3',
-    question: 'The country that has the highest in Barley Production?',
-    answers: [
-      'China',
-      'India',
-      'Russia',
-      'France',
-    ],
-    correctAnswer: 'Russia',
-  ),
-  Question(
-    id: '4',
-    question: 'Tsunami are not caused by',
-    answers: [
-      'Hurricanes',
-      'Earthquakes',
-      'Undersea landslides',
-      'Volcanic Eruptions',
-    ],
-    correctAnswer: 'Hurricanes',
-  ),
-  Question(
-    id: '5',
-    question: 'Chambal river is a part of',
-    answers: [
-      'Sabarmati basin',
-      'Ganga basin',
-      'Narmada basin',
-      'Godavari basin'
-    ],
-    correctAnswer: 'Narmada basin',
-  ),
-];
+// List<Question> questions = [
+//   Question(
+//     id: '1',
+//     question: 'The metal whose salts are sensitive to light is?',
+//     answers: [
+//       'Zinc',
+//       'Silver',
+//       'Copper',
+//       'Aluminium',
+//     ],
+//     correctAnswer: 'Silver',
+//   ),
+//   Question(
+//     id: '2',
+//     question: 'Patanjali is well known for compilation of -',
+//     answers: [
+//       'Yoga Sutra',
+//       'Panchatantra',
+//       'Brahma Sutra',
+//       'Ayurveda',
+//     ],
+//     correctAnswer: 'Yoga Sutra',
+//   ),
+//   Question(
+//     id: '3',
+//     question: 'The country that has the highest in Barley Production?',
+//     answers: [
+//       'China',
+//       'India',
+//       'Russia',
+//       'France',
+//     ],
+//     correctAnswer: 'Russia',
+//   ),
+//   Question(
+//     id: '4',
+//     question: 'Tsunami are not caused by',
+//     answers: [
+//       'Hurricanes',
+//       'Earthquakes',
+//       'Undersea landslides',
+//       'Volcanic Eruptions',
+//     ],
+//     correctAnswer: 'Hurricanes',
+//   ),
+//   Question(
+//     id: '5',
+//     question: 'Chambal river is a part of',
+//     answers: [
+//       'Sabarmati basin',
+//       'Ganga basin',
+//       'Narmada basin',
+//       'Godavari basin'
+//     ],
+//     correctAnswer: 'Narmada basin',
+//   ),
+// ];

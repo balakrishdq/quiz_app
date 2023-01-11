@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Quiz App',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.indigo,
       ),
       home: HomeScreen(),
     );
