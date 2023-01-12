@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
+import 'package:quiz_app/utils/auth_button.dart';
 import 'package:quiz_app/utils/gradient_box.dart';
 
 import '../utils/action_button.dart';
@@ -90,6 +91,8 @@ class HomeScreen extends StatelessWidget {
                   );
                 },
               ),
+              Gap(40),
+              AuthButton(),
             ],
           ),
         ),

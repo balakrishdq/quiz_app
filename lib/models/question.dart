@@ -51,7 +51,6 @@ class Question {
   factory Question.fromQueryDocumentSnapshot(QueryDocumentSnapshot snapshot) {
     final data = snapshot.data() as Map<String, dynamic>;
     final id = snapshot.id;
-
     data['id'] = id;
     return Question.fromMap(data);
   }
