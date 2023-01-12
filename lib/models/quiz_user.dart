@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class QuizUser {
-  final String id;
-  final String name;
-  final String photoUrl;
-  final String email;
-  final int score;
+  final String? id;
+  final String? name;
+  final String? photoUrl;
+  final String? email;
+  final int? score;
   QuizUser({
     required this.id,
     required this.name,
@@ -43,7 +43,7 @@ class QuizUser {
     };
   }
 
-  factory QuizUser.fromMap(Map<String, dynamic> map) {
+  factory QuizUser.fromMap(Map map) {
     return QuizUser(
       id: map['id'] as String,
       name: map['name'] as String,

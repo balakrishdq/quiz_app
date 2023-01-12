@@ -7,7 +7,7 @@ import '../models/question.dart';
 class QuizProvider extends ChangeNotifier {
   int totalTime = 0;
   List<Question> questions = [];
-  List<QuizUser> users = [];
+  List<QuizUser?> users = [];
 
   QuizProvider() {
     QuizService.getAllQuestions().then((value) {
@@ -22,7 +22,7 @@ class QuizProvider extends ChangeNotifier {
   }
 
   Future<void> getAllUsers() async {
-    users = await QuizService.getAllUser();
+    users = await QuizService?.getAllUser();
     notifyListeners();
   }
 

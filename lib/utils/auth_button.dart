@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screens/leader_screen.dart';
 import 'package:quiz_app/services/auth_service.dart';
@@ -47,6 +48,10 @@ class _AuthButtonState extends State<AuthButton> {
       isPrimary: false,
       title: 'Sign In with Google',
       onTap: () {
+        if (kIsWeb) {
+          AuthService.signInWithGoogleWeb();
+          return;
+        }
         AuthService.signInWithGoogle();
       },
     );

@@ -50,11 +50,11 @@ class _LeaderScreenState extends State<LeaderScreen> {
                       child: ListTile(
                         leading: CircleAvatar(
                           backgroundImage: NetworkImage(
-                            users.photoUrl,
+                            users!.photoUrl.toString(),
                           ),
                         ),
                         title: Text(
-                          users.name,
+                          users.name.toString(),
                         ),
                         trailing: Text(
                           users.score.toString(),
