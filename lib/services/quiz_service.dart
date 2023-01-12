@@ -23,7 +23,9 @@ class QuizService {
   }
 
   static Future<List<QuizUser>> getAllUser() async {
-    final userRef = FirebaseFirestore.instance.collection('questions');
+    final userRef = FirebaseFirestore.instance
+        .collection('questions')
+        .orderBy('score', descending: true);
     final userDoc = await userRef.get();
 
     return userDoc.docs

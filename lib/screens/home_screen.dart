@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
-import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/providers/quiz_provider.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:quiz_app/utils/auth_button.dart';
 import 'package:quiz_app/utils/gradient_box.dart';
@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<QuizProvider>();
     return Scaffold(
       body: SizedBox.expand(
         child: GradientBox(
@@ -29,67 +30,31 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Gap(40),
-              StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('questions')
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
+              if (provider.questions.isEmpty || provider.totalTime == 0)
+                Center(
+                  child: CircularProgressIndicator(),
+                )
+              else
+                ActionButton(
+                  title: 'Start',
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => QuizScreen(
+                          totalTime: provider.totalTime,
+                          questions: provider.questions,
+                        ),
+                      ),
                     );
-                  }
-
-                  final questionDoc = snapshot.data!.docs;
-
-                  final questions = questionDoc
-                      .map((e) => Question.fromQueryDocumentSnapshot(e))
-                      .toList();
-
-                  return StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('config')
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      print(snapshot.error);
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-
-                      final configDoc = snapshot.data!.docs.first.data()
-                          as Map<String, dynamic>;
-                      final totalTime = configDoc['key'];
-
-                      return Column(
-                        children: [
-                          ActionButton(
-                            title: 'Start',
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => QuizScreen(
-                                    totalTime: totalTime,
-                                    questions: questions,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          Gap(30),
-                          Text(
-                            'Total Questions: ${questions.length}',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  );
-                },
+                  },
+                ),
+              Gap(30),
+              Text(
+                'Total Questions: ${provider.questions.length}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 17,
+                ),
               ),
               Gap(40),
               AuthButton(),
