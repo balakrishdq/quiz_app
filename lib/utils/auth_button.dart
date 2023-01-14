@@ -34,25 +34,29 @@ class _AuthButtonState extends State<AuthButton> {
   @override
   Widget build(BuildContext context) {
     if (_isLoggedIn)
-      return ActionButton(
-        title: 'Ranking',
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => LeaderScreen(),
-            ),
-          );
-        },
+      return Column(
+        children: [
+          ActionButton(
+            title: 'Leaderboard',
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => LeaderScreen(),
+                ),
+              );
+            },
+          ),
+        ],
       );
     return ActionButton(
       isPrimary: false,
       title: 'Sign In with Google',
       onTap: () {
         if (kIsWeb) {
-          AuthService.signInWithGoogleWeb();
+          AuthService.signInWithGoogleWeb(context);
           return;
         }
-        AuthService.signInWithGoogle();
+        AuthService.signInWithGoogle(context);
       },
     );
   }

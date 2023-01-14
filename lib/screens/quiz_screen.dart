@@ -127,7 +127,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           _score++;
                         }
 
-                        Future.delayed(Duration(milliseconds: 200), () {
+                        Future.delayed(Duration(seconds: 1), () {
                           if (_currentIndex == widget.questions.length - 1) {
                             pushResultScreen(context);
                             return;

@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/providers/quiz_provider.dart';
+import 'package:quiz_app/screens/home_screen.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:quiz_app/utils/action_button.dart';
 import 'package:quiz_app/utils/auth_button.dart';
 import 'package:quiz_app/utils/gradient_box.dart';
+
+import '../services/auth_service.dart';
 
 class ResultScreen extends StatefulWidget {
   final int score;
@@ -36,13 +39,46 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: <Color>[
+                Colors.indigo.shade800,
+                Colors.indigo.shade800,
+              ],
+            ),
+          ),
+        ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop(MaterialPageRoute(
+                builder: (context) => HomeScreen(),
+              ));
+            },
+            icon: Icon(
+              Icons.home,
+            )),
+        actions: [
+          IconButton(
+            onPressed: () {
+              AuthService.signOut(context);
+            },
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+          )
+        ],
+      ),
       body: GradientBox(
         child: SizedBox.expand(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Result: ${widget.score} / ${widget.questions.length}',
+                'Score: ${widget.score} / ${widget.questions.length}',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 40,

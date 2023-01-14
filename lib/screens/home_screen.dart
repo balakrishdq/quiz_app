@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
       body: SizedBox.expand(
         child: GradientBox(
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -29,6 +30,8 @@ class HomeScreen extends StatelessWidget {
                   fontSize: 40,
                 ),
               ),
+              Gap(40),
+              Image.asset('assets/images/logo1.png'),
               Gap(40),
               if (provider.questions.isEmpty || provider.totalTime == 0)
                 Center(

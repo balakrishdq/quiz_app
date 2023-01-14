@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/firebase_options.dart';
 import 'package:quiz_app/providers/quiz_provider.dart';
@@ -19,12 +20,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData _defaultTheme() {
+      var baseTheme = ThemeData();
+      return baseTheme.copyWith(
+        primaryColor: Colors.indigo,
+        textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
+      );
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Quiz App',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
+      theme: _defaultTheme(),
       home: HomeScreen(),
     );
   }

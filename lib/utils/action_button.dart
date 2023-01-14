@@ -27,15 +27,32 @@ class ActionButton extends StatelessWidget {
                 ),
               ),
             )
-          : TextButton(
+          : OutlinedButton(
               onPressed: () => onTap(),
-              child: Text(
-                title,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  decoration: TextDecoration.underline,
-                ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ))),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image: AssetImage('assets/images/google_logo.png'),
+                    height: 35,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ),
+                ],
               )),
     );
   }
