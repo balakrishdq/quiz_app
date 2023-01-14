@@ -29,4 +29,10 @@ The firebase project is created for android, Ios and Web. For authentication **G
 
 App is configured with web also and its also hosted by firebase hosting.
 
+***The hosted firebase web project link, I am attaching for your kind reference.***
+## https://quiz-app-6840d.web.app/#/
 
+***This is the link for project demo video uploaded in drive***
+### https://drive.google.com/file/d/1sFUuWiQVaKwRMXK7bgJGims-UWe6vk7d/view?usp=sharing
+
+# Thank you
