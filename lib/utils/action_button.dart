@@ -28,28 +28,37 @@ class ActionButton extends StatelessWidget {
                 ),
               ),
             )
-          : OutlinedButton(
-              onPressed: () => onTap(),
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(40),
-                  ))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/google_logo.png'),
-                    height: 35,
-                  ),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black87,
+          : SizedBox(
+              width: 200,
+              height: 100,
+              child: OutlinedButton(
+                onPressed: () => onTap(),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.grey.shade200),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
                     ),
                   ),
-                ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(
+                      image: AssetImage('assets/images/google_logo.png'),
+                      height: 35,
+                      width: 35,
+                    ),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
     );

@@ -50,7 +50,7 @@ class _AuthButtonState extends State<AuthButton> {
       );
     return ActionButton(
       isPrimary: false,
-      title: 'Sign In with Google',
+      title: 'SignIn with Google',
       onTap: () {
         if (kIsWeb) {
           AuthService.signInWithGoogleWeb(context);
