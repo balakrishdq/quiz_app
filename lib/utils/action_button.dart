@@ -24,6 +24,7 @@ class ActionButton extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: Colors.white,
+                  fontSize: 18,
                 ),
               ),
             )
@@ -35,25 +36,22 @@ class ActionButton extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                   ))),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image(
                     image: AssetImage('assets/images/google_logo.png'),
                     height: 35,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: Text(
-                      title,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black54,
-                      ),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black87,
                     ),
                   ),
                 ],
-              )),
+              ),
+            ),
     );
   }
 }

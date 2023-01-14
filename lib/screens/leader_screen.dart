@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/providers/quiz_provider.dart';
+import 'package:quiz_app/screens/home_screen.dart';
 import 'package:quiz_app/services/quiz_service.dart';
 import 'package:quiz_app/utils/gradient_box.dart';
 
@@ -51,6 +52,11 @@ class _LeaderScreenState extends State<LeaderScreen> {
           IconButton(
             onPressed: () {
               AuthService.signOut(context);
+              Navigator.of(context).pop(
+                MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ),
+              );
             },
             icon: Icon(
               Icons.logout,

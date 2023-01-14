@@ -11,8 +11,6 @@ import 'package:quiz_app/utils/action_button.dart';
 import 'package:quiz_app/utils/auth_button.dart';
 import 'package:quiz_app/utils/gradient_box.dart';
 
-import '../services/auth_service.dart';
-
 class ResultScreen extends StatefulWidget {
   final int score;
   final int totalTime;
@@ -60,17 +58,6 @@ class _ResultScreenState extends State<ResultScreen> {
             icon: Icon(
               Icons.home,
             )),
-        actions: [
-          IconButton(
-            onPressed: () {
-              AuthService.signOut(context);
-            },
-            icon: Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-          )
-        ],
       ),
       body: GradientBox(
         child: SizedBox.expand(
